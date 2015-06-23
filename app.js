@@ -18,8 +18,16 @@
 
          $stateProvider.state('pokemon', {
             url: "/pokemon/:id",
-            templateUrl: "templates/pokemon.html",
-            controller: 'PokemonDetailController'
+            views: {
+                '' :{
+                    templateUrl: "templates/pokemon.html",
+                    controller: 'PokemonDetailController'
+                },
+                'moves@pokemon':{
+                    templateUrl: "templates/moves.html",
+                    controller: 'MovesController'
+                }
+            }
         });
 
          $urlRouterProvider.otherwise("/pokemons");

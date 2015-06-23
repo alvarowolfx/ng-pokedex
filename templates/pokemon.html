@@ -11,14 +11,16 @@
             </span>
         </h4>
         <tabset>
-            <tab heading="Movimentos">
-                <h1>Movimentos</h1>
+            <tab heading="Movimentos" >
+                <ui-view name='moves'></ui-view>
             </tab>
-            <tab heading="Evolução">
+            <tab heading="Evolução" >
                 <h1>Evolução</h1>
+                <ui-view name='evo'></ui-view>
             </tab>
-            <tab heading="Habilidades">
+            <tab heading="Habilidades" >
                 <h1>Habilidades</h1>
+                <ui-view name='abil'></ui-view>
             </tab>
         </tabs>
     </div>

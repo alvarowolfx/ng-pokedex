@@ -8,6 +8,7 @@
     function Pokemons($http, $q, PokeapiURL){
         var service = {
             getAll: getAll,
+            getMove: getMove,
             get: get
         }
 
@@ -19,6 +20,19 @@
             $http.get(url, {cache: true})
                 .success(function(response){
                     defered.resolve(buildPokemon(response))
+                })
+                .error(function(){
+                    defered.reject([]);
+                });
+            return defered.promise;
+        }
+
+        function getMove(id){
+            var defered = $q.defer();
+            var url = PokeapiURL + 'move/'+id;
+            $http.get(url, {cache: true})
+                .success(function(response){
+                    defered.resolve(response)
                 })
                 .error(function(){
                     defered.reject([]);
