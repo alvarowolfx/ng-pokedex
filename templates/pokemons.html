@@ -1,8 +1,15 @@
 <h3> Lista de pokemons </h3>
-<div class='panel panel-default' ng-repeat="pokemon in pokemons" ng-hide='carregando'>
+<div class="form-group has-feedback">
+    <input class="form-control" placeholder="Busca de pokemons" ng-model='busca'>
+    <span class="glyphicon glyphicon-search form-control-feedback" ></span>
+</div>
+
+<progressbar ng-show='carregando' value="'70'" ></progressbar>
+
+<div class='panel panel-default col-md-3 col-xs-6' ng-repeat="pokemon in pokemons | filter: busca" ng-hide='carregando'>
     <div class='panel-body'>
-        <img ng-src='{{pokemon.img}}' class='pull-left'></img>
-        <h2>#{{pokemon.id}}</h2>
-        <h3>{{pokemon.name }}</h3>
+        <img ng-src='{{pokemon.img}}' class='pull-left' height="100px" ></img>
+        <h4>#{{pokemon.id}}</h4>
+        <h4>{{pokemon.name }}</h4>
     </div>
 </div>
