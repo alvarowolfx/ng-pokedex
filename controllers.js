@@ -2,16 +2,13 @@
     angular.module('pokedex.controllers',[])
         .controller('PokemonsController',PokemonsController);
 
-        PokemonsController.$inject = ['$scope'];
-        function PokemonsController($scope){
-            var pokemons = [
-            {
-                name: 'Pikachu'
-            },
-            {
-                name: 'Charmander'
-            }
-            ];
-            $scope.pokemons = pokemons;
+        PokemonsController.$inject = ['$scope', 'Pokemons'];
+        function PokemonsController($scope, Pokemons){
+            $scope.pokemons = [];
+            Pokemons.getAll().then(function(pokemons){
+                $scope.pokemons = pokemons;
+            },function(){
+                $scope.pokemons = [];
+            });
         }
 })();
