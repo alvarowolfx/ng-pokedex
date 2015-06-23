@@ -1,6 +1,7 @@
 (function(){
     angular.module('pokedex.controllers',[])
-        .controller('PokemonsController',PokemonsController);
+        .controller('PokemonsController', PokemonsController)
+        .controller('PokemonDetailController', PokemonDetailController);
 
         PokemonsController.$inject = ['$scope', 'Pokemons'];
         function PokemonsController($scope, Pokemons){
@@ -12,6 +13,18 @@
             },function(){
                 $scope.pokemons = [];
                 $scope.carregando = false;
+            });
+        }
+
+        PokemonDetailController.$inject = ['$scope', '$state', 'Pokemons'];
+        function PokemonDetailController($scope, $state, Pokemons){
+            var pokeId = $state.params.id;
+
+            $scope.pokemon = {};
+            Pokemons.get(pokeId).then(function(pokemon){
+                $scope.pokemon = pokemon;
+            },function(){
+                $scope.pokemon = {};
             });
         }
 })();

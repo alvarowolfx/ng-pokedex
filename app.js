@@ -16,6 +16,12 @@
             controller: 'PokemonsController'
         });
 
+         $stateProvider.state('pokemon', {
+            url: "/pokemon/:id",
+            templateUrl: "templates/pokemon.html",
+            controller: 'PokemonDetailController'
+        });
+
          $urlRouterProvider.otherwise("/pokemons");
     }
 

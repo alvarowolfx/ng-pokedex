@@ -1,0 +1,25 @@
+<div class='panel panel-info'>
+    <div class='panel-heading'>
+        <img ng-src='{{pokemon.img}}' class='pull-left'></img>
+        <h4>#{{pokemon.id}} </h4>
+    </div>
+    <div class='panel-body'>
+        <h4><b>Nome:</b>  {{pokemon.name}} </h4>
+        <h4><b>Tipo: </b>
+            <span ng-repeat="tipo in pokemon.types" class='label tipo' ng-class='tipo.name'>
+                {{tipo.name}}
+            </span>
+        </h4>
+        <tabset>
+            <tab heading="Movimentos">
+                <h1>Movimentos</h1>
+            </tab>
+            <tab heading="Evolução">
+                <h1>Evolução</h1>
+            </tab>
+            <tab heading="Habilidades">
+                <h1>Habilidades</h1>
+            </tab>
+        </tabs>
+    </div>
+</div>

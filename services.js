@@ -7,10 +7,24 @@
     Pokemons.$inject = ['$http', '$q', 'PokeapiURL'];
     function Pokemons($http, $q, PokeapiURL){
         var service = {
-            getAll: getAll
+            getAll: getAll,
+            get: get
         }
 
         return service;
+
+        function get(id){
+            var defered = $q.defer();
+            var url = PokeapiURL + 'pokemon/'+id;
+            $http.get(url, {cache: true})
+                .success(function(response){
+                    defered.resolve(buildPokemon(response))
+                })
+                .error(function(){
+                    defered.reject([]);
+                });
+            return defered.promise;
+        }
 
         function buildPokemon(pokemon){
             var partes = pokemon.resource_uri.split('/');

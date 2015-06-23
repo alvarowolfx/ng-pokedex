@@ -6,10 +6,16 @@
 
 <progressbar ng-show='carregando' value="'70'" ></progressbar>
 
-<div class='panel panel-default col-md-3 col-xs-6' ng-repeat="pokemon in pokemons | filter: busca" ng-hide='carregando'>
-    <div class='panel-body'>
-        <img ng-src='{{pokemon.img}}' class='pull-left' height="100px" ></img>
-        <h4>#{{pokemon.id}}</h4>
-        <h4>{{pokemon.name }}</h4>
+<div ng-hide='carregando'>
+    <div class='panel panel-default col-md-3 col-xs-6'
+            ng-repeat="pokemon in pokemons | filter: busca">
+        <div class='panel-body'>
+            <img ng-src='{{pokemon.img}}' class='pull-left' height="100px" ></img>
+            <h4>#{{pokemon.id}}</h4>
+            <h4>{{pokemon.name }}</h4>
+            <a ui-sref='pokemon({ id: pokemon.id })' class='btn btn-primary'>
+                Ver detalhes
+            </a>
+        </div>
     </div>
 </div>
