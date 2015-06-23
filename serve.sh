@@ -1,1 +1,1 @@
-browser-sync start --server --files="*.html, *.js"
+browser-sync start --server --files="**/*.html, **/*.js"
