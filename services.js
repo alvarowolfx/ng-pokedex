@@ -12,11 +12,31 @@
 
         return service;
 
+        function buildPokemon(pokemon){
+            var partes = pokemon.resource_uri.split('/');
+            var id = partes[partes.length - 2];
+            pokemon.id = parseInt(id);
+            pokemon.img = 'http://pokeapi.co/media/img/' + id + '.png';
+            return pokemon;
+        }
+
+        function filtrarMegaPokemons(pokemon){
+            return pokemon.id < 10000;
+        }
+
+        function comparatorPokemons(pokemonA, pokemonB){
+            return pokemonA.id < pokemonB.id ? -1 : 1;
+        }
+
         function getAll(){
             var defered = $q.defer();
             var url = PokeapiURL + 'pokedex/1/';
-            $http.get(url).success(function(response){
-                defered.resolve(response.pokemon);
+            $http.get(url, {cache: true}).success(function(response){
+                var pokemons = response.pokemon;
+                pokemons = pokemons.map(buildPokemon);
+                pokemons = pokemons.filter(filtrarMegaPokemons);
+                pokemons = pokemons.sort(comparatorPokemons);
+                defered.resolve(pokemons);
             }).error(function(){
                 defered.reject([]);
             });
