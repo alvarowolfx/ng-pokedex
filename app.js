@@ -23,6 +23,9 @@
                     templateUrl: "templates/pokemon.html",
                     controller: 'PokemonDetailController'
                 },
+                'evo@pokemon':{
+                    templateUrl: "templates/evo.html"
+                },
                 'moves@pokemon':{
                     templateUrl: "templates/moves.html",
                     controller: 'MovesController'

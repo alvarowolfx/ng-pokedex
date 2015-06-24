@@ -19,6 +19,9 @@
             var url = PokeapiURL + 'pokemon/'+id;
             $http.get(url, {cache: true})
                 .success(function(response){
+                    angular.forEach(response.evolutions,function(evo){
+                        buildPokemon(evo);
+                    });
                     defered.resolve(buildPokemon(response))
                 })
                 .error(function(){
