@@ -1,6 +1,7 @@
 (function(){
     angular.module('pokedex.services',[])
         .factory('Pokemons',Pokemons)
+        .factory('Historico', Historico)
         .constant('PokeapiURL','http://pokeapi.co/api/v1/');
 
 
@@ -73,6 +74,57 @@
             });
             return defered.promise;
         }
-
     };
+
+    Historico.$inject = ['$rootScope'];
+    function Historico($rootScope){
+        var service = {
+            pushState: pushState,
+            popState: popState,
+            getHistorico: getHistorico,
+            clear: clear
+        }
+
+        var historico = [];
+        if(localStorage.historico){
+            historico = JSON.parse(localStorage.historico);
+        }
+
+        return service;
+
+        function pushState(name){
+            var state = window.location.hash;
+            var atual = estadoAtual();
+            if(!atual || atual.state !== state){
+                historico.push({name: name, state: state});
+                salvar();
+            }
+        }
+
+        function estadoAtual(){
+            return historico[historico.length-1];
+        }
+
+        function popState(steps){
+            for (var i = steps; i >= 0; i--) {
+                historico.pop()
+            }
+            salvar();
+        }
+
+        function clear(){
+            historico = [];
+            salvar();
+        }
+
+        function salvar(){
+            localStorage.setItem('historico', JSON.stringify(historico));
+            $rootScope.$emit('historico.changed');
+        }
+
+        function getHistorico(){
+            return angular.copy(historico);
+        }
+
+    }
 })();

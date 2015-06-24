@@ -4,8 +4,10 @@
         .controller('PokemonDetailController', PokemonDetailController)
         .controller('MovesController', MovesController);
 
-        PokemonsController.$inject = ['$scope', 'Pokemons'];
-        function PokemonsController($scope, Pokemons){
+        PokemonsController.$inject = ['$scope', 'Pokemons', 'Historico'];
+        function PokemonsController($scope, Pokemons, Historico){
+            Historico.clear();
+
             $scope.pokemons = [];
             $scope.carregando = true;
             Pokemons.getAll().then(function(pokemons){
@@ -17,8 +19,8 @@
             });
         }
 
-        PokemonDetailController.$inject = ['$scope', '$state', 'Pokemons'];
-        function PokemonDetailController($scope, $state, Pokemons){
+        PokemonDetailController.$inject = ['$scope', '$state', 'Pokemons', 'Historico'];
+        function PokemonDetailController($scope, $state, Pokemons, Historico){
             var pokeId = $state.params.id;
 
             $scope.$state = $state;
@@ -26,6 +28,7 @@
             $scope.pokemon = {};
             Pokemons.get(pokeId).then(function(pokemon){
                 $scope.pokemon = pokemon;
+                Historico.pushState(pokemon.name)
             },function(){
                 $scope.pokemon = {};
             });

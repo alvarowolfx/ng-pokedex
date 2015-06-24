@@ -2,6 +2,7 @@
     var app = angular.module('pokedex',[
         'pokedex.controllers',
         'pokedex.services',
+        'pokedex.directives',
         'ui.bootstrap',
         'ui.router'
     ]);
