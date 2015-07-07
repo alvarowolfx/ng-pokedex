@@ -1,5 +1,8 @@
 # Pokedex App
-This app was developed on the AngularJS Course that I gave ([link for the presentation](http://alvarowolfx.github.io/ionic-present)). So I'm sharing the code for those who are interested in studying AngularJS.
+A pokedex web app using AngularJS and [Pokeapi.co](http://pokeapi.co/).
+
+This app was developed on the AngularJS Course that I gave
+. So I'm sharing the code for those who are interested in studying AngularJS.
 
 ## Pre requirements
 - Node.js and NPM installed (I recommend to do something like [this](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md) to install global packages without sudo )
