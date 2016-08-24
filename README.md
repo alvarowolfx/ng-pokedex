@@ -9,10 +9,6 @@ Links for the slides:
 
 ## Pre requirements
 - Node.js and NPM installed (I recommend to do something like [this](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md) to install global packages without sudo )
-- Browser Sync 
-```shell
-npm install -g browser-sync
-```
 
 ## How to run
 - Install required npm packages, run this command on project folder :
@@ -21,10 +17,8 @@ npm install
 ```
 - Start livereload server
 ```shell
-browser-sync start --server --files="**/*.html, **/*.js"
+npm start
 ```
-or
-```shell
-chmod +x serve.sh
-./serve.sh
-```
+## Style guide
+The angular style guide followed by this project can be found [here](https://github.com/johnpapa/angular-styleguide)
+
