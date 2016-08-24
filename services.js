@@ -48,7 +48,7 @@
             var partes = pokemon.resource_uri.split('/');
             var id = partes[partes.length - 2];
             pokemon.id = parseInt(id);
-            pokemon.img = 'http://pokeapi.co/media/img/' + id + '.png';
+            pokemon.img = "https://img.pokemondb.net/sprites/black-white/normal/"+pokemon.name+".png"
             return pokemon;
         }
 
