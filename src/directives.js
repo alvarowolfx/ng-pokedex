@@ -5,7 +5,7 @@
     Navegacao.$inject = ['Historico', '$rootScope', '$state'];
     function Navegacao(Historico, $rootScope, $state){
         var directive = {
-            templateUrl: "templates/navegacao.html",
+            templateUrl: "src/templates/navegacao.html",
             restrict: "E",
             link: link
         }

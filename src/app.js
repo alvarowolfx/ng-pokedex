@@ -13,7 +13,7 @@
     function RouterConfiguration($stateProvider, $urlRouterProvider){
          $stateProvider.state('pokemons', {
             url: "/pokemons",
-            templateUrl: "templates/pokemons.html",
+            templateUrl: "src/templates/pokemons.html",
             controller: 'PokemonsController'
         });
 
@@ -21,14 +21,14 @@
             url: "/pokemon/:id",
             views: {
                 '' :{
-                    templateUrl: "templates/pokemon.html",
+                    templateUrl: "src/templates/pokemon.html",
                     controller: 'PokemonDetailController'
                 },
                 'evo@pokemon':{
-                    templateUrl: "templates/evo.html"
+                    templateUrl: "src/templates/evo.html"
                 },
                 'moves@pokemon':{
-                    templateUrl: "templates/moves.html",
+                    templateUrl: "src/templates/moves.html",
                     controller: 'MovesController'
                 }
             }

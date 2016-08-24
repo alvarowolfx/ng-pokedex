@@ -20,9 +20,12 @@
             var url = PokeapiURL + 'pokemon/'+id;
             $http.get(url, {cache: true})
                 .success(function(response){
-                    angular.forEach(response.evolutions,function(evo){
-                        buildPokemon(evo);
+                    var evolutions = response.evolutions;
+                    var seenEvolutions = {};
+                    evolutions = evolutions.filter(function(evo){
+                        return seenEvolutions.hasOwnProperty(evo.to) ? false : (seenEvolutions[evo.to] = true);
                     });
+                    response.evolutions = evolutions.map(buildPokemon);
                     defered.resolve(buildPokemon(response))
                 })
                 .error(function(){
@@ -48,12 +51,22 @@
             var partes = pokemon.resource_uri.split('/');
             var id = partes[partes.length - 2];
             pokemon.id = parseInt(id);
-            pokemon.img = "https://img.pokemondb.net/sprites/black-white/normal/"+pokemon.name+".png"
+            var name = '';
+            if(!pokemon.name){
+                name = pokemon.to.toLowerCase();
+            }else{
+                name = pokemon.name.toLowerCase();
+            }
+            pokemon.img = "https://img.pokemondb.net/sprites/black-white/normal/"+name+".png"
             return pokemon;
         }
 
         function filtrarMegaPokemons(pokemon){
             return pokemon.id < 10000;
+        }
+
+        function filtrarNovosPokemons(pokemon){
+            return pokemon.id < 650;
         }
 
         function comparatorPokemons(pokemonA, pokemonB){
@@ -67,6 +80,7 @@
                 var pokemons = response.pokemon;
                 pokemons = pokemons.map(buildPokemon);
                 pokemons = pokemons.filter(filtrarMegaPokemons);
+                pokemons = pokemons.filter(filtrarNovosPokemons);
                 pokemons = pokemons.sort(comparatorPokemons);
                 defered.resolve(pokemons);
             }).error(function(){
